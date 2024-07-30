@@ -11,9 +11,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<meta name="author" content="寺井 雅人（愛知工科大学）" />
 
 
-<title>R StudioとR Markdownの基本 </title>
+<title>外国語教育研究者のための  オープンサイエンス入門</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -148,9 +149,12 @@ code span.ot { color: #007020; }
 
 <header>
 <div class="inner">
-<h1 class="title toc-ignore"><p>R StudioとR Markdownの基本<br></p></h1>
-<h3 class="date">作成:2024-05-20, 最終更新(JST): 2024-06-03
-17:33:28</h3>
+<h1 class="title toc-ignore"><p>外国語教育研究者のための<br>
+オープンサイエンス入門</p></h1>
+<h2 class="subtitle">R Markdownを用いた実践編</h2>
+<h3 class="author">寺井 雅人（愛知工科大学）</h3>
+<h3 class="date">作成:2024-05-20, 最終更新(JST): 2024-07-30
+17:24:54</h3>
 </div>
 </header>
 
@@ -191,11 +195,12 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxgAAALTCAYA
 <div id="寺井-雅人masato-terai" class="section level2">
 <h2>寺井 雅人（Masato Terai）</h2>
 <ul>
-<li>研究：第二言語習得の語彙</li>
 <li>所属：愛知工科大学（助教）</li>
-<li>R(Studio)歴：2018年～現在に至る</li>
-<li>gmail: <a href="mailto:terai.research@gmail.com" class="email">terai.research@gmail.com</a></li>
+<li>研究：第二言語習得の語彙</li>
+<li>R(Studio)歴：2018年～現在に至る
+<!-- -   Gmail: [terai.research\@gmail.com](mailto:terai.research@gmail.com){.email} --></li>
 <li>X（旧Twitter）: <a href="https://twitter.com/uniquefreshman">@uniquefreshman</a></li>
+<li>プログラミング記事：<a href="https://qiita.com/masato-terai">Qiita</a></li>
 </ul>
 </div>
 </div>
@@ -203,8 +208,8 @@ background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxgAAALTCAYA
 <h1>はじめに</h1>
 <div id="研究成果や研究資料の公開共有の必要性" class="section level2">
 <h2>研究成果や研究資料の公開・共有の必要性</h2>
-<div id="再現可能な研究のために研究に使用したマテリアルの提出が推奨されている" class="section level3">
-<h3>再現可能な研究のために、研究に使用したマテリアルの提出が推奨されている</h3>
+<div id="再現可能な研究のために研究に使用したマテリアルの提出を推奨" class="section level3">
+<h3>再現可能な研究のために、研究に使用したマテリアルの提出を推奨</h3>
 <ul>
 <li><p>e.g.,
 実験で使用した刺激文、分析に使用した生データ、分析コード</p></li>
@@ -226,18 +231,8 @@ and helps authors and journals increase the visibility of their
 published research.</p>
 </blockquote>
 </div>
-<div id="個人的な事例" class="section level3">
-<h3>個人的な事例</h3>
-<ul>
-<li>出版した論文のオンライン付録に載せたデータ及び分析コードをもとに分析方法を再現していただき、よりよい方法を指摘していただいたことがある。</li>
-</ul>
-</div>
 <div id="正直めんどくさいし時間がかかる" class="section level3">
 <h3>正直「めんどくさい」し「時間がかかる」</h3>
-<ul>
-<li>論文と並行して作成する必要がある</li>
-<li>理解しやすい内容にする必要がある</li>
-</ul>
 </div>
 </div>
 </div>
@@ -247,7 +242,7 @@ published research.</p>
 <h2>Rで分析を行う場合、R Markdownが一番便利</h2>
 <ul>
 <li><p>RとWordが合体したようなもの。</p></li>
-<li><p>様々な媒体として<strong>簡単に</strong>出力できる</p>
+<li><p>様々な媒体に<strong>簡単に</strong>出力できる</p>
 <ul>
 <li>HTML、Word、Power Pointなどなど</li>
 <li><a href="https://vimeo.com/178485416">例(1:00のあたり)</a></li>
@@ -265,7 +260,7 @@ published research.</p>
 <li><p>R Markdownでまとめた結果を共有することができる</p>
 <ul>
 <li>HTML、Word、Power Point形式での出力</li>
-<li>RPub、 Githubなどでの公開</li>
+<li>RPubs、 Githubなどでの公開</li>
 </ul></li>
 <li><p>様々なパソコンで同じ分析環境を再現することができる</p>
 <ul>
@@ -281,7 +276,7 @@ published research.</p>
 <div id="r-markdownの解体新書" class="section level3">
 <h3>R Markdownの解体新書</h3>
 <ul>
-<li><p>YAML（YAML　Ain’t Markup
+<li><p>【パーツ１】YAML（YAML　Ain’t Markup
 Language）ヘッダー：文章全体の体裁や情報を操作する</p>
 <ul>
 <li>タイトル、サブタイトル</li>
@@ -289,17 +284,18 @@ Language）ヘッダー：文章全体の体裁や情報を操作する</p>
 <li>作成した日時、更新日時も設定可能</li>
 <li>どのような形式で作成するか</li>
 </ul></li>
-<li><p>コードチャンク：Rのコードを記述するところ</p></li>
-<li><p>ドキュメントチャンク：<a href="https://www.jaysong.net/RBook/rmarkdown.html#rmarkdown-intro">Markdownと呼ばれるプログラム言語</a>で記述するところ</p>
-<ul>
-<li>見出し、表、箇条書き、強調、斜体など、Wordのリボン部分にある機能をMarkdownで書く</li>
-<li>Markdownで書かなくとも、文章のみも入力できる</li>
-</ul></li>
 </ul>
 <div class="infobox caution">
 <p><strong>注意</strong><br> ・
 YAMLヘッダーは、Markdownとは異なるプログラム言語なので、慣れるまでは、““の中以外は触らない。</p>
 </div>
+<ul>
+<li><p>【パーツ２】コードチャンク：Rのコードを記述するところ</p></li>
+<li><p>【パーツ３】ドキュメントチャンク：<a href="https://www.jaysong.net/RBook/rmarkdown.html#rmarkdown-intro">Markdownと呼ばれるプログラム言語</a>で記述するところ</p>
+<ul>
+<li>見出し、表、箇条書き、強調、斜体など、Wordのリボン部分にある機能をMarkdownで書く</li>
+</ul></li>
+</ul>
 </div>
 </div>
 <div id="プロジェクト" class="section level2">
@@ -530,11 +526,11 @@ date: &quot;2024-04-15&quot;</code></pre>
 <li>リンクで他者に共有できます。</li>
 <li>以下の二つは無料で利用できるが、無料版の場合、リンクを知る人だれもが閲覧できるので注意</li>
 </ul>
-<div id="rpubを使う" class="section level3">
-<h3>Rpubを使う</h3>
+<div id="rpubsを使う" class="section level3">
+<h3>RPubsを使う</h3>
 <ul>
 <li>コメント機能もあるので、「発表へのコメントは匿名でこちらへ」みたいにできそう。</li>
-<li><a href="https://qiita.com/masato-terai/items/664c5ee782f690260eca#rpubs%E4%B8%80%E7%95%AA%E7%B0%A1%E5%8D%98">リンク</a></li>
+<li><a href="https://qiita.com/masato-terai/items/664c5ee782f690260eca#rpubs%E4%B8%80%E7%95%AA%E7%B0%A1%E5%8D%98">使い方の解説</a></li>
 </ul>
 </div>
 <div id="githubを使う" class="section level3">
@@ -543,7 +539,7 @@ date: &quot;2024-04-15&quot;</code></pre>
 <li>Githubとは、コードのバージョン管理をするツール。共同編集可能。</li>
 <li>今回は一番簡単な方法で実行します。しかし、Git(hub)をフルで使いこなせば、ファイルのバージョン管理、共同編集などが可能でより再現可能な資料作成に一歩近づくと思います。R
 Studioとの連携も可能。</li>
-<li><a href="https://qiita.com/masato-terai/items/664c5ee782f690260eca#rpubs%E4%B8%80%E7%95%AA%E7%B0%A1%E5%8D%98">リンク</a></li>
+<li><a href="https://qiita.com/masato-terai/items/664c5ee782f690260eca#rpubs%E4%B8%80%E7%95%AA%E7%B0%A1%E5%8D%98">使い方の解説</a></li>
 </ul>
 </div>
 </div>
@@ -554,7 +550,7 @@ Studioとの連携も可能。</li>
 <h2>パッケージのバージョン管理：<code>renv</code>パッケージ</h2>
 <ul>
 <li><p><em>r</em>eproducible
-<em>env</em>ironments（再生可能な分析環境）の略</p></li>
+<em>env</em>ironments（再現性のある分析環境）の略</p></li>
 <li><p>RのプロジェクトごとにRの環境を作る。同じパソコンで、同じ名前でバージョンが異なるパッケージを使うことができる。</p></li>
 <li><p>旧バージョンを試しに使ってみたい場合が、今のバージョンも記録しておきたいときに！</p></li>
 <li><p>プロジェクトディレクトリを相手に共有できる！別のパソコンで分析したいときにも！</p></li>
@@ -671,10 +667,6 @@ Fortunes: Collected Wisdom</a>)。</p></li>
 <pre><code>install.packages(&quot;fortunes&quot;)</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;fortunes&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &#39;1.5.4&#39;</code></pre>
-<ul>
-<li>renvフォルダーの中の、library &gt; R-あなたのバージョン &gt;
-あなたのパソコンPlatformを開くと、パッケージの名前と同じフォルダ（<strong>fortunes</strong>）が追加されています。</li>
-</ul>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>fortunes<span class="sc">::</span><span class="fu">fortune</span>(<span class="at">which =</span> <span class="dv">78</span>)</span></code></pre></div>
 <pre><code>## 
 ## R is the lingua franca of statistical research. Work in all other languages
@@ -702,7 +694,8 @@ Do you want to proceed? [Y/n]: </code></pre>
 </ul>
 <pre><code>- Lockfile written to &quot;~/LET/LET_Workshop_2024/materials_LETworkshop_2024/renv.lock&quot;.</code></pre>
 <ul>
-<li>renv.lockを開くと、新しく追加されている（五十音順になっているので見つけやすいです）。</li>
+<li>renvフォルダーの中の、library &gt; R-あなたのバージョン &gt;
+あなたのパソコンPlatformを開くと、パッケージの名前と同じフォルダ（<strong>fortunes</strong>）が追加されています（五十音順になっているので見つけやすいです）。</li>
 </ul>
 </div>
 <div id="パッケージ情報の復元" class="section level3">
@@ -714,7 +707,7 @@ Do you want to proceed? [Y/n]: </code></pre>
 <ul>
 <li>今回は、<code>fortunes</code>パッケージの古いバージョンをインストールする。</li>
 </ul></li>
-<li><p>最初に、<code>remove.packages</code>で<strong>fortunes</strong>関数を削除。<br />
+<li><p>最初に、<code>remove.packages</code>で<strong>fortunes</strong>パッケージを削除。<br />
 </p></li>
 <li><p>注！ここで<code>renv::snapshot()</code>はやらない。やってしまうと、renv.lockからも削除され、戻らなくなってしまう。</p></li>
 </ul>
@@ -733,12 +726,12 @@ Restart your R session to use the new versions.</code></pre>
 </ul>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&quot;fortunes&quot;</span>)</span></code></pre></div>
 <ul>
+<li><a href="https://cran.r-project.org/src/contrib/Archive/fortunes/">バージョン1.4.0は2010年9月9日にリリースされている</a></li>
 <li>2016年に追加された386番目の名言はこのバージョンでは追加されていないので表示されない。</li>
 </ul>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>fortunes<span class="sc">::</span><span class="fu">fortune</span>(<span class="at">which =</span> <span class="dv">78</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>fortunes<span class="sc">::</span><span class="fu">fortune</span>(<span class="at">which =</span> <span class="dv">386</span>)</span></code></pre></div>
 <ul>
-<li>もしこの古いバージョンを残す場合、<code>renv::snapshot()</code>で<strong>renv.lock</strong>ファイルを更新。</li>
 <li>元に戻す場合は、<code>renv::restore()</code></li>
 </ul>
 <pre><code>renv::restore()</code></pre>
@@ -784,12 +777,25 @@ version]をクリックすると、過去にそのPCで使用していたRのバ
 <li>デフォルトでは、ファイルの作成日を手動で切り替えないといけない。</li>
 </ul></li>
 <li>r Sys.time：2022-01-20</li>
-<li>r Sys.Date：2022-01-20 21:36:36</li>
 </ul>
 <div class="sourceCode" id="cb34"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Untitled&quot;</span></span>
 <span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Masato Terai&quot;</span></span>
 <span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="an">date:</span><span class="co"> &quot;`r Sys.time()` in JST&quot;   # ``と&quot;&quot;で囲うのを忘れない。</span></span>
 <span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="an">output:</span><span class="co"> html_document</span></span></code></pre></div>
+<ul>
+<li>r Sys.Date：2022-01-20 21:36:36</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Untitled&quot;</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Masato Terai&quot;</span></span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="an">date:</span><span class="co"> &quot;r format(Sys.time(), &#39;%Y-%m-%d %X&#39;)&quot;   # ``と&quot;&quot;で囲うのを忘れない。</span></span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="an">output:</span><span class="co"> html_document</span></span></code></pre></div>
+<ul>
+<li>寺井おすすめ</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Untitled&quot;</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Masato Terai&quot;</span></span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a><span class="an">date:</span><span class="co"> &quot;作成日:2024-05-20, 最終更新(JST): `r format(Sys.time(), &#39;%Y-%m-%d %X&#39;)`&quot;</span></span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a><span class="an">output:</span><span class="co"> html_document</span></span></code></pre></div>
 </div>
 <div id="rのバージョンパソコンのos-コア数使用したrのパッケージのバージョン" class="section level3">
 <h3>Rのバージョン、パソコンのOS &amp;
@@ -797,7 +803,7 @@ version]をクリックすると、過去にそのPCで使用していたRのバ
 <ul>
 <li>RのバージョンやOS、パッケージのバージョン情報など</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.3.2 (2023-10-31 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 11 x64 (build 22621)
@@ -824,12 +830,16 @@ version]をクリックすると、過去にそのPCで使用していたRのバ
 ## [17] rstudioapi_0.16.0 tools_4.3.2       evaluate_0.23     bslib_0.5.1      
 ## [21] yaml_2.3.7        jsonlite_1.8.7    rlang_1.1.2</code></pre>
 <ul>
-<li>コア数（論理コアだけでOK）</li>
+<li>コア数（論理コアだけでOK）
+<ul>
+<li>「論理コア」は「スレッド」「論理プロセッサ」、「仮想コア」とも呼ばれる</li>
+<li><a href="https://wa3.i-3-i.info/diff735core.html">コアについて</a></li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">library</span>(parallel) <span class="co">#最初から入っているパッケージなので、インストールの必要なし</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="fu">detectCores</span>() <span class="co"># 論理コア</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">library</span>(parallel) <span class="co">#最初から入っているパッケージなので、インストールの必要なし</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">detectCores</span>() <span class="co"># 論理コア</span></span></code></pre></div>
 <pre><code>## [1] 32</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">detectCores</span>(<span class="at">logical =</span> <span class="cn">FALSE</span>) <span class="co">#物理コア</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="fu">detectCores</span>(<span class="at">logical =</span> <span class="cn">FALSE</span>) <span class="co">#物理コア</span></span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 </div>
 <div id="処理にかかった時間" class="section level3">
@@ -840,17 +850,17 @@ version]をクリックすると、過去にそのPCで使用していたRのバ
 <li>いつ終わるのか分からない見通しのつかない分析を実行するのは怖いです。コア数に加え処理にかかった時間が記載されていればおおよその見通しがつきます。</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co">#install.packages(&quot;tictoc&quot;) # 入れていないかたは先にインストールしてください</span></span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">library</span>(tictoc)</span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a><span class="fu">tic</span>() <span class="co">#測定開始</span></span>
-<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>I <span class="ot">&lt;-</span><span class="cn">NULL</span></span>
-<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>){</span>
-<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a>  I <span class="ot">&lt;-</span> <span class="fu">c</span>(I,  i)}</span>
-<span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" tabindex="-1"></a><span class="fu">toc</span>() <span class="co">#測定終了</span></span></code></pre></div>
-<pre><code>## 5.07 sec elapsed</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co">#install.packages(&quot;tictoc&quot;) # 入れていないかたは先にインストールしてください</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">library</span>(tictoc)</span>
+<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a><span class="fu">tic</span>() <span class="co">#測定開始</span></span>
+<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>I <span class="ot">&lt;-</span><span class="cn">NULL</span></span>
+<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>){</span>
+<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a>  I <span class="ot">&lt;-</span> <span class="fu">c</span>(I,  i)}</span>
+<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" tabindex="-1"></a><span class="fu">toc</span>() <span class="co">#測定終了</span></span></code></pre></div>
+<pre><code>## 4.8 sec elapsed</code></pre>
 </div>
 </div>
 <div id="関数の呼び出し方" class="section level2">
@@ -908,6 +918,7 @@ data |&gt;
 </div>
 <div id="まとめ" class="section level1">
 <h1>まとめ</h1>
+<div style="border: 3px solid blue; padding: 10px; background-color: #e6f7ff;">
 <ol style="list-style-type: decimal">
 <li><p>R
 Markdownでは、YAMLヘッダー、コードチャンク、ドキュメントチャンクを使って分析結果をまとめることができる。</p>
@@ -917,7 +928,7 @@ Markdownでは、YAMLヘッダー、コードチャンク、ドキュメント�
 <li><p>作成したR Markdownファイルは、Word、HTMLファイル、Power
 Pointなど様々な形式に出力できる。</p>
 <ul>
-<li>RpubやGithubを使えば、ウェブページとして共有できる</li>
+<li>RPubsやGithubを使えば、ウェブページとして共有できる</li>
 </ul></li>
 <li><p>RのパッケージやR自体のバージョンは切り替えて使うことができる。</p>
 <ul>
@@ -925,11 +936,14 @@ Pointなど様々な形式に出力できる。</p>
 </ul></li>
 </ol>
 </div>
+<p><br></p>
+</div>
 <div id="参考文献-資料" class="section level1">
 <h1>参考文献 &amp; 資料</h1>
 <div id="書籍ウェブサイトの記事" class="section level2">
 <h2>📚：書籍、💻：ウェブサイトの記事</h2>
 <ul>
+<li><p><a href="https://wa3.i-3-i.info/diff735core.html">💻「物理コア」と「論理コア」の違い</a></p></li>
 <li><p><a href="https://qiita.com/gp333/items/9ed91fc280fc6f26ef93">💻MacでのRstudio上でのR
 versionの切り替え方法</a></p></li>
 <li><p><a href="https://www.amazon.co.jp/R%E3%81%8C%E7%94%9F%E7%94%A3%E6%80%A7%E3%82%92%E9%AB%98%E3%82%81%E3%82%8B%E3%80%9C%E3%83%87%E3%83%BC%E3%82%BF%E5%88%86%E6%9E%90%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%E5%8A%B9%E7%8E%87%E5%8C%96%E3%81%AE%E5%AE%9F%E8%B7%B5-igjit/dp/4297125242">📚Rが生産性を高める
@@ -941,6 +955,10 @@ R versions in Windows</a></p></li>
 <li><p><a href="https://www.amazon.co.jp/%E5%86%8D%E7%8F%BE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AE%E3%81%99%E3%82%9D%E3%82%81-Wonderful-R-%E7%9F%B3%E7%94%B0-%E5%9F%BA%E5%BA%83/dp/4320112431">📚再現可能性のすすめ：RStudioによるデータ解析とレポート作成</a></p></li>
 <li><p><a href="https://www.jaysong.net/RBook/renv.html">💻私たちのR</a></p></li>
 <li><p><a href="https://qiita.com/xuwenzhen/items/b01f78525626b3e87d23">💻YAMLについての基本知識</a></p></li>
+<li><p><a href="https://qiita.com/masato-terai/items/664c5ee782f690260eca">💻R
+Markdownでスライドを作成（ioslides）</a></p></li>
+<li><p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">💻R
+Markdown Cheat Sheet</a></p></li>
 </ul>
 </div>
 </div>
