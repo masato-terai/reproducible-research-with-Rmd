@@ -13,3 +13,7 @@ email: [terai.research[at]gmail.com]<br>
 X: [https://x.com/uniquefreshman]<br>
 
 Thank you for participating in the seminar! I hope you find the seminar helpful.
+
+Access to this page with the following QR code:
+![QR Code](qrcode.png)
+
