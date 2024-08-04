@@ -1,4 +1,4 @@
-# Seminar Repository:wave:
+# <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="28">Seminar Repository
 Welcome to the Seminar Repository! This repository is dedicated to distributing files.
 
 Access to this page with the following QR code:
