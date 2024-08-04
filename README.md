@@ -1,4 +1,4 @@
-# Seminar Repository
+# Seminar Repository:wave:
 Welcome to the Seminar Repository! This repository is dedicated to distributing files.
 
 Access to this page with the following QR code:
